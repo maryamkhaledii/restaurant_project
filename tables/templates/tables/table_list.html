@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Table List</h2>
+
+<a href="{% url 'table_create' %}">Create New Table</a>
+
+<ul>
+    {% for table in tables %}
+        <li>
+            <a href="{% url 'table_detail' table.pk %}">
+                Table {{ table.number }} – Seats: {{ table.seats }}
+            </a>
+            {% if table.is_available %}
+                <span style="color: green;">Available</span>
+            {% else %}
+                <span style="color: red;">Not Available</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

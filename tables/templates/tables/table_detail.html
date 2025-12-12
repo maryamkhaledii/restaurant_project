@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Table {{ table.number }} Details</h2>
+
+<p>Seats: {{ table.seats }}</p>
+<p>Status:
+    {% if table.is_available %}
+        <span style="color: green;">Available</span>
+    {% else %}
+        <span style="color: red;">Not Available</span>
+    {% endif %}
+</p>
+
+<a href="{% url 'table_update' table.pk %}">Edit</a> |
+<a href="{% url 'table_delete' table.pk %}">Delete</a>
+{% endblock %}
