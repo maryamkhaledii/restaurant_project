@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %}
 {% block content %}
 <h2>Foods List</h2>
 
@@ -13,4 +13,19 @@
 
 <a href="{% url 'food_create' %}">➕ Add New Food</a>
 
+{% endblock %} {% endcomment %}
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>لیست غذاها</h2>
+
+<ul>
+    {% for food in foods %}
+        <li>{{ food.name }} - {{ food.price }}</li>
+    {% empty %}
+        <li>غذایی وجود ندارد</li>
+    {% endfor %}
+</ul>
 {% endblock %}
+

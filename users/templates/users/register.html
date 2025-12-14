@@ -1,0 +1,16 @@
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="نام کاربری" required><br><br>
+    <input type="password" name="password1" placeholder="رمز عبور" required><br><br>
+    <input type="password" name="password2" placeholder="تکرار رمز عبور" required><br><br>
+    <button type="submit">ثبت نام</button>
+</form>
+
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+
+
+
+
