@@ -15,6 +15,10 @@
 {% endfor %}
 
 {% endblock %}
+{% if user.is_authenticated %}
+    <p>سلام {{ user.username }}</p>
+{% endif %}
+
 
 
 

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>مدیریت غذاها</h2>
+
+<ul>
+    {% for food in foods %}
+        <li>
+            {{ food.name }} - {{ food.price }} تومان
+        </li>
+    {% empty %}
+        <li>غذایی ثبت نشده</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

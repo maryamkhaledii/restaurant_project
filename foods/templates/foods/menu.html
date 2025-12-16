@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>منوی رستوران</h2>
+
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+  {% for food in foods %}
+    <div style="border:1px solid #ccc; padding:10px; width:220px; text-align:center;">
+      
+      <a href="{% url 'foods:detail' food.id %}">
+        {% if food.image %}
+          <img src="{{ food.image.url }}" alt="{{ food.name }}" width="200">
+        {% else %}
+          <p>بدون تصویر</p>
+        {% endif %}
+
+        <h3>{{ food.name }}</h3>
+      </a>
+
+      <p>{{ food.price }} تومان</p>
+
+    </div>
+  {% empty %}
+    <p>غذایی موجود نیست</p>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+ 
+
+

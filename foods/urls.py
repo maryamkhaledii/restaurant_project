@@ -1,11 +1,17 @@
 from django.urls import path
-from .views import food_list, food_detail, food_create
+from .views import menu, food_detail, food_create, food_admin_list
 
 app_name = "foods"
+
 urlpatterns = [
-    path("", food_list, name="food_list"),
-    path("<int:pk>/", food_detail, name="food_detail"),
-    path("create/", food_create, name="food_create"),
+    path("", menu, name="menu"),                 # منو برای مشتری
+    path("create/", food_create, name="create"), # افزودن غذا (ادمین)
+    path("admin/", food_admin_list, name="admin_list"),  # لیست غذا (ادمین)
+    path("<int:pk>/", food_detail, name="detail"),
 ]
+
+
+
+
 
 

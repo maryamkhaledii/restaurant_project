@@ -135,6 +135,9 @@ LOGOUT_REDIRECT_URL = "login"
 MESSAGE_TAGS = {
     messages.ERROR: "error",
 }
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 
 

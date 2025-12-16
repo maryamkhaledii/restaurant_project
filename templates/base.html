@@ -1,30 +1,26 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>Restaurant</title>
-</head>
-<body>
-
 <nav>
     <a href="{% url 'home' %}">خانه</a>
 
     {% if user.is_authenticated %}
+        {% if user.is_staff %}
+            <a href="{% url 'foods:admin_list' %}">مدیریت غذا</a>
+        {% else %}
+            <a href="{% url 'foods:menu' %}">منو</a>
+        {% endif %}
+
         <a href="{% url 'users:logout' %}">خروج</a>
     {% else %}
+        <a href="{% url 'foods:menu' %}">منو</a>
         <a href="{% url 'users:login' %}">ورود</a>
-        <a href="{% url 'users:register' %}">ثبت نام</a>
+        <a href="{% url 'users:register' %}">ثبت‌نام</a>
     {% endif %}
 </nav>
 
+
 <hr>
 
-<!-- 🔴 این خط حیاتی است -->
-{% block content %}
-{% endblock %}
+{% block content %}{% endblock %}
 
 </body>
 </html>
-
-
 

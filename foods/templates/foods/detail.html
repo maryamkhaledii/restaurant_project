@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ food.name }}</h2>
+
+{% if food.image %}
+  <img src="{{ food.image.url }}" width="300">
+{% endif %}
+
+<p><strong>قیمت:</strong> {{ food.price }} تومان</p>
+
+<p><strong>توضیحات:</strong></p>
+<p>{{ food.description }}</p>
+
+<a href="{% url 'foods:menu' %}">⬅️ بازگشت به منو</a>
+
+{% endblock %}

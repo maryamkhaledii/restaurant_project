@@ -1,33 +1,47 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from users.decorators import admin_required, customer_required
 from .models import Food
 from .forms import FoodForm
-from django.contrib.auth.decorators import login_required, user_passes_test
 
-def is_admin(user):
-    return user.is_authenticated and user.role == "admin"
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import Food
-
+# 👤 منو برای مشتری
 @login_required
-def food_list(request):
+@customer_required
+def menu(request):
     foods = Food.objects.all()
-    return render(request, "foods/list.html", {"foods": foods})
+    return render(request, "foods/menu.html", {"foods": foods})
 
+
+# 👨‍💼 لیست غذا برای مدیر
 @login_required
-@user_passes_test(is_admin)
+@admin_required
+def food_admin_list(request):
+    foods = Food.objects.all()
+    return render(request, "foods/admin_list.html", {"foods": foods})
+
+
+# 👨‍💼 افزودن غذا
+@login_required
+@admin_required
 def food_create(request):
-    form = FoodForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect("foods:list")
+    if request.method == "POST":
+        form = FoodForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("foods:admin_list")
+    else:
+        form = FoodForm()
+
     return render(request, "foods/create.html", {"form": form})
 
 
+# جزئیات غذا (اختیاری)
+@login_required
 def food_detail(request, pk):
     food = get_object_or_404(Food, pk=pk)
     return render(request, "foods/detail.html", {"food": food})
+
 
 
 

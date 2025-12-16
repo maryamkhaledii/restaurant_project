@@ -4,11 +4,13 @@
 <h1>صفحه اصلی</h1>
 
 {% if user.is_authenticated %}
-    <p>خوش آمدی {{ user.username }}</p>
+    <p>سلام {{ user.username }} 👋</p>
 {% else %}
     <p>لطفاً وارد شوید</p>
 {% endif %}
 
 {% endblock %}
+
+
 
 
