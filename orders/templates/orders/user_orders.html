@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>سفارش‌های من</h2>
+
+{% for order in orders %}
+    <p>
+        سفارش #{{ order.id }} |
+        وضعیت: {{ order.get_status_display }}
+    </p>
+{% empty %}
+    <p>سفارشی ثبت نشده</p>
+{% endfor %}
+
+{% endblock %}

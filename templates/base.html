@@ -6,21 +6,16 @@
             <a href="{% url 'foods:admin_list' %}">مدیریت غذا</a>
         {% else %}
             <a href="{% url 'foods:menu' %}">منو</a>
+            <a href="{% url 'orders:create' %}">ثبت سفارش</a>
         {% endif %}
 
         <a href="{% url 'users:logout' %}">خروج</a>
     {% else %}
-        <a href="{% url 'foods:menu' %}">منو</a>
         <a href="{% url 'users:login' %}">ورود</a>
         <a href="{% url 'users:register' %}">ثبت‌نام</a>
     {% endif %}
 </nav>
 
-
 <hr>
 
 {% block content %}{% endblock %}
-
-</body>
-</html>
-

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>✅ سفارش شما ثبت شد</h2>
+
+<p>شماره سفارش: {{ order.id }}</p>
+<p>مبلغ کل: {{ order.total_price }} تومان</p>
+<p>وضعیت: {{ order.status }}</p>
+
+<a href="{% url 'orders:list' %}">مشاهده سفارش‌ها</a>
+{% endblock %}
+

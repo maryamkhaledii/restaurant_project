@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>سبد خرید</h2>
+
+{% if cart %}
+<table>
+  <tr>
+    <th>غذا</th>
+    <th>تعداد</th>
+    <th>قیمت</th>
+    <th>جمع</th>
+  </tr>
+
+  {% for item in cart %}
+  <tr>
+    <td>{{ item.food.name }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>{{ item.price }}</td>
+    <td>{{ item.total_price }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<p><strong>مبلغ کل:</strong> {{ cart.get_total_price }} تومان</p>
+
+<!-- 👇 دکمه ثبت سفارش دقیقاً اینجاست -->
+<a href="{% url 'orders:create' %}" class="btn btn-success">
+  ثبت سفارش
+</a>
+
+{% else %}
+<p>سبد خرید خالی است</p>
+{% endif %}
+
+{% endblock %}
+
+

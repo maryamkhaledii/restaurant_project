@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>سبد خرید</h2>
+
+{% for item in items %}
+    <p>
+        {{ item.food.name }} -
+        تعداد: {{ item.quantity }} -
+        قیمت: {{ item.total }}
+        <a href="{% url 'orders:cart_remove' item.food.id %}">حذف</a>
+    </p>
+{% empty %}
+    <p>سبد خرید خالی است</p>
+{% endfor %}
+
+<a href="{% url 'orders:create' %}">ثبت سفارش</a>
+
+{% endblock %}
+
+
