@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>🪑 رزرو میز</h2>
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <p>
+        {{ form.table.label_tag }}<br>
+        {{ form.table }}
+    </p>
+
+    <p>
+        {{ form.date.label_tag }}<br>
+        {{ form.date }}
+    </p>
+
+    <p>
+        {{ form.time.label_tag }}<br>
+        {{ form.time }}
+    </p>
+
+    <button type="submit">ثبت رزرو</button>
+</form>
+
+{% endblock %}
+
+
+

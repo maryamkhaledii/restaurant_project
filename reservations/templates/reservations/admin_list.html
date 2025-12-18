@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>📋 لیست رزروها</h2>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>کاربر</th>
+        <th>میز</th>
+        <th>تاریخ</th>
+        <th>ساعت</th>
+        <th>وضعیت</th>
+        <th>عملیات</th>
+    </tr>
+
+    {% for r in reservations %}
+    <tr>
+        <td>{{ r.user }}</td>
+        <td>{{ r.table.number }}</td>
+        <td>{{ r.date }}</td>
+        <td>{{ r.time }}</td>
+        <td>{{ r.get_status_display }}</td>
+        <td>
+            {% if r.status == "pending" %}
+                <a href="{% url 'reservations:done' r.id %}">✅ انجام شد</a> |
+                <a href="{% url 'reservations:cancel' r.id %}">❌ لغو</a>
+            {% else %}
+                ---
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+

@@ -3,7 +3,7 @@ from .models import Reservation
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ("name", "phone", "date", "time", "num_people", "table")
-    list_filter = ("date",)
-    search_fields = ("name", "phone")
+    list_display = ("user", "table", "date", "time", "created_at")
+    list_filter = ("date", "table")
+
 

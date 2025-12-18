@@ -1,19 +1,23 @@
 <nav>
     <a href="{% url 'home' %}">خانه</a>
 
-    {% if user.is_authenticated %}
-        {% if user.is_staff %}
-            <a href="{% url 'foods:admin_list' %}">مدیریت غذا</a>
-        {% else %}
-            <a href="{% url 'foods:menu' %}">منو</a>
-            <a href="{% url 'orders:create' %}">ثبت سفارش</a>
-        {% endif %}
+   {% if user.is_authenticated %}
+    {% if user.is_staff %}
+    <a href="{% url 'foods:admin_list' %}">مدیریت غذا</a>
+    <a href="{% url 'reservations:admin_list' %}">لیست رزروها</a>
+{% else %}
+    <a href="{% url 'reservations:admin_list' %}">مدیریت رزروها</a>
+    <a href="{% url 'foods:menu' %}">منو</a>
+    <a href="{% url 'reservations:create' %}">رزرو میز</a>
 
-        <a href="{% url 'users:logout' %}">خروج</a>
-    {% else %}
-        <a href="{% url 'users:login' %}">ورود</a>
-        <a href="{% url 'users:register' %}">ثبت‌نام</a>
-    {% endif %}
+{% endif %}
+
+    <a href="{% url 'users:logout' %}">خروج</a>
+{% else %}
+    <a href="{% url 'users:login' %}">ورود</a>
+    <a href="{% url 'users:register' %}">ثبت‌نام</a>
+{% endif %}
+
 </nav>
 
 <hr>
