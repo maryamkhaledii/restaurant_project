@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Order, OrderItem
 from foods.models import Food
-
+from .cart import Cart
 
 @login_required
 def order_create(request):
-    cart = getattr(request, "cart", None)
+    cart = Cart(request)
 
-    if not cart or len(cart) == 0:
+    if not cart.cart:
         return redirect("foods:menu")
 
     total_price = 0
@@ -31,8 +31,8 @@ def order_create(request):
         )
 
     cart.clear()
-
     return redirect("orders:success", order.id)
+
 
 
 @login_required
@@ -41,13 +41,26 @@ def order_success(request, order_id):
     return render(request, "orders/success.html", {"order": order})
 
 
+#  لیست سفارش‌های کاربر
 @login_required
 def order_list(request):
     orders = Order.objects.filter(user=request.user).order_by("-created_at")
     return render(request, "orders/list.html", {"orders": orders})
 
 
+#  جزئیات سفارش
 @login_required
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     return render(request, "orders/detail.html", {"order": order})
+
+
+#  لیست سفارش‌ها برای ادمین
+@login_required
+def admin_order_list(request):
+    if not request.user.is_staff:
+        return redirect("home")
+
+    orders = Order.objects.all().order_by("-created_at")
+    return render(request, "orders/admin_list.html", {"orders": orders})
+

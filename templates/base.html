@@ -3,11 +3,15 @@
 
    {% if user.is_authenticated %}
     {% if user.is_staff %}
+    <a href="{% url 'orders:admin_list' %}">مدیریت سفارش‌ها</a>
     <a href="{% url 'foods:admin_list' %}">مدیریت غذا</a>
     <a href="{% url 'reservations:admin_list' %}">لیست رزروها</a>
+    <a href="{% url 'orders:list' %}">لیست سفارش‌ها</a>
 {% else %}
-    <a href="{% url 'reservations:admin_list' %}">مدیریت رزروها</a>
+    {% comment %} <a href="{% url 'reservations:admin_list' %}">مدیریت رزروها</a> {% endcomment %}
     <a href="{% url 'foods:menu' %}">منو</a>
+    <a href="{% url 'orders:create' %}">ثبت سفارش</a>
+    <a href="{% url 'orders:list' %}">سفارش‌های من</a>
     <a href="{% url 'reservations:create' %}">رزرو میز</a>
 
 {% endif %}

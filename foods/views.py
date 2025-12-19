@@ -5,7 +5,7 @@ from .models import Food
 from .forms import FoodForm
 
 
-# 👤 منو برای مشتری
+# منو برای مشتری
 @login_required
 @customer_required
 def menu(request):
@@ -13,7 +13,7 @@ def menu(request):
     return render(request, "foods/menu.html", {"foods": foods})
 
 
-# 👨‍💼 لیست غذا برای مدیر
+#  لیست غذا برای مدیر
 @login_required
 @admin_required
 def food_admin_list(request):
@@ -21,7 +21,7 @@ def food_admin_list(request):
     return render(request, "foods/admin_list.html", {"foods": foods})
 
 
-# 👨‍💼 افزودن غذا
+#  افزودن غذا
 @login_required
 @admin_required
 def food_create(request):

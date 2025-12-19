@@ -1,0 +1,12 @@
+<h2>📋 لیست سفارش‌ها (مدیر)</h2>
+
+{% for order in orders %}
+  <p>
+    سفارش #{{ order.id }} |
+    کاربر: {{ order.user }} |
+    مبلغ: {{ order.total_price }} |
+    وضعیت: {{ order.get_status_display }}
+  </p>
+{% empty %}
+  <p>سفارشی وجود ندارد</p>
+{% endfor %}
